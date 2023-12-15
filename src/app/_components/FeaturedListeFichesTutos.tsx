@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import "server-only";
-import { getFeaturedFichesTutos } from "../../_applications/Posts/getFeaturedFichesTutos";
-import { FicheTuto } from "../../_applications/Posts/FicheTuto";
+import { getFeaturedFichesTutos } from "../../_applications/FichesTutos/getFeaturedFichesTutos";
+import { FicheTuto } from "../../_applications/FichesTutos/FicheTuto";
 
-export default async function FeaturedPosts() {
+export default async function FeaturedListeFichesTutos() {
   const featuredFichesTutos = await getFeaturedFichesTutos();
 
   return (

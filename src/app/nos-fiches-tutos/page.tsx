@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Footer from "../_components/_ui/Footer";
 import ListeFichesTutos from "../_components/ListeFichesTutos";
-import { getUnePageDeFichesTutos } from "../../_applications/Posts/getUnePageDeFichesTutos";
+import { getUnePageDeFichesTutos } from "../../_applications/FichesTutos/getUnePageDeFichesTutos";
 
 interface SearchParamsProps {
   searchParams: {
