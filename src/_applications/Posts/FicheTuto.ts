@@ -1,4 +1,4 @@
-export class Post {
+export class FicheTuto {
   private readonly id: string;
   private readonly title: string;
 

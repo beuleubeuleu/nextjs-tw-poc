@@ -1,9 +1,9 @@
 import { gql } from "graphql-request";
 import { hygraph } from "../../_infrastructure/hygraph";
-import { Post } from "./Post";
-import { PostType } from "../../_types/PostType";
+import { FicheTuto } from "./FicheTuto";
+import { FicheTutoType } from "../../_types/FicheTutoType";
 
-const getPostsByPageQuery = (page: number) => gql`
+const getUnePageDeFichesTutosQuery = (page: number) => gql`
   {
     postsConnection(first: 5, skip: ${page ? (page - 1) * 5 : 1}) {
       edges {
@@ -26,7 +26,7 @@ const getPostsByPageQuery = (page: number) => gql`
 type data = {
   postsConnection: {
     edges: {
-      node: PostType;
+      node: FicheTutoType;
     }[];
     aggregate: {
       count: number;
@@ -38,18 +38,23 @@ type data = {
   };
 };
 
-export async function getOnePageOfPosts(page: number) {
+export async function getUnePageDeFichesTutos(page: number) {
   const { postsConnection } = await hygraph.request<data>(
-    getPostsByPageQuery(page),
+    getUnePageDeFichesTutosQuery(page),
   );
   if (!postsConnection) return null;
 
   const posts = postsConnection.edges.map(
-    (item) => new Post(item.node.id, item.node.title),
+    (item) => new FicheTuto(item.node.id, item.node.title),
   );
-  const totalPosts = postsConnection.aggregate.count;
+  const nombreTotalDeFichesTutos = postsConnection.aggregate.count;
   const hasPreviousPage = postsConnection.pageInfo.hasPreviousPage;
   const hasNextPage = postsConnection.pageInfo.hasNextPage;
 
-  return { posts, totalPosts, hasPreviousPage, hasNextPage };
+  return {
+    posts,
+    nombreTotalDeFichesTutos,
+    hasPreviousPage,
+    hasNextPage,
+  };
 }

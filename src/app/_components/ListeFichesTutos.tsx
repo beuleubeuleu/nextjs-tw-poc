@@ -1,26 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Post } from "../../_applications/Posts/Post";
+import { FicheTuto } from "../../_applications/Posts/FicheTuto";
 
-type ListeFichesTutosProps = { posts: Post[] };
+type ListeFichesTutosProps = { fichesTutos: FicheTuto[] };
 
-export default function ListeFichesTutos({ posts }: ListeFichesTutosProps) {
+export default function ListeFichesTutos({
+  fichesTutos,
+}: ListeFichesTutosProps) {
   return (
     <ul
       className={
         "mt-2 flex min-h-[488px] w-full flex-col items-center justify-start gap-6"
       }
     >
-      {posts.map((post) => {
+      {fichesTutos.map((ficheTuto) => {
         return (
           <li
-            key={post.getId()}
+            key={ficheTuto.getId()}
             className={
               "flex w-full items-center justify-between bg-[#B7D5F4] p-4"
             }
           >
             <div className={"h-10 w-10 rounded bg-[#264C67]"}></div>
-            <p className={"w-2/3 text-gray-700"}>{post.getTitle()}</p>
+            <p className={"w-2/3 text-gray-700"}>{ficheTuto.getTitle()}</p>
             <Link
               href={"/"}
               className={
