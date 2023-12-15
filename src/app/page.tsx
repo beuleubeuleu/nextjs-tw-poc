@@ -1,5 +1,5 @@
 import { Hero } from "./_components/_ui/Hero";
-import FeaturedPosts from "../app/_components/FeaturedPosts";
+import FeaturedListeFichesTutos from "./_components/FeaturedListeFichesTutos";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,7 +7,8 @@ export default function Home() {
     <main className="flex flex-col items-center justify-between">
       <div>
         <Hero />
-        <FeaturedPosts />
+        {/*@ts-expect-error Async Server Component*/}
+        <FeaturedListeFichesTutos />
         <div
           className={
             "flex flex-col items-center justify-center gap-2 p-4 text-xl"
