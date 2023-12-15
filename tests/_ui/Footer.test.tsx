@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen } from "@testing-library/react";
-import Footer from "../../app/_components/_ui/Footer";
+import Footer from "../../src/app/_components/_ui/Footer";
 
 describe("<Footer/>", () => {
   it("Le pieds de page est present", () => {

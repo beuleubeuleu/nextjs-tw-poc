@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 import { render, screen, within } from "@testing-library/react";
-import Header from "../../app/_components/_ui/Header";
+import Header from "../../src/app/_components/_ui/Header";
 import { userEvent } from "@testing-library/user-event";
-import { menuItems } from "../../../public/menuItems";
+import { menuItems } from "../../public/menuItems";
 
 describe("<Header/>", () => {
   it("L'entête de page est présente", async () => {

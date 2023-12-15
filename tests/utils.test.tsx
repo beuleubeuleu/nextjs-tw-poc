@@ -1,4 +1,4 @@
-import { getDistanceVoldOiseauFromLatLonInKm } from "../../src/app/utils";
+import { getDistanceVoldOiseauFromLatLonInKm } from "../src/app/utils";
 
 describe("getDistanceVoldOiseauFromLatLonInKm", () => {
   it("calcule la distance entre deux points", () => {

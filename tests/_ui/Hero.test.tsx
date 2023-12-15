@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen } from "@testing-library/react";
-import { Hero } from "../../app/_components/_ui/Hero";
+import { Hero } from "../../src/app/_components/_ui/Hero";
 
 describe("<Hero/>", () => {
   it("devrait avoir un paragraphe et une image", () => {
