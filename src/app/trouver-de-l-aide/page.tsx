@@ -6,21 +6,12 @@ import { useEffect, useState } from "react";
 import { getDistanceVoldOiseauFromLatLonInKm } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
+import { AdresseType } from "../../_types/AdresseType";
 
 const DEFAULT_CENTER = [48.79493, 2.36622];
 
-type Adresses = {
-  id: string;
-  longitude: number;
-  lattitude: number;
-  description: string;
-  adresse: string;
-  telephone: string;
-  titre: string;
-}[];
-
 export default function TrouverDeLaide() {
-  const [adresses, setAdresses] = useState<Adresses>([]);
+  const [adresses, setAdresses] = useState<AdresseType[]>([]);
 
   useEffect(() => {
     async function getData(): Promise<any> {
@@ -67,8 +58,8 @@ export default function TrouverDeLaide() {
                         <p className={"italic"}>
                           {Math.round(
                             getDistanceVoldOiseauFromLatLonInKm(
-                              48.79493,
-                              2.36622,
+                              DEFAULT_CENTER[0],
+                              DEFAULT_CENTER[1],
                               adresse.lattitude,
                               adresse.longitude,
                             ) * 10,
