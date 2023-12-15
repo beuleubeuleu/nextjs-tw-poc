@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { hygraph } from "../../../infrastructure/hygraph";
+import { hygraph } from "../../../_infrastructure/hygraph";
 
 const getAdressesQuery = gql`
   {

@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { hygraph } from "../../infrastructure/hygraph";
+import { hygraph } from "../../_infrastructure/hygraph";
 
 import Link from "next/link";
 import Image from "next/image";

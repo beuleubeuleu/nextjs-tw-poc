@@ -24,7 +24,7 @@ export default function TrouverDeLaide() {
 
   useEffect(() => {
     async function getData(): Promise<any> {
-      const data = await fetch("/trouver-de-l-aide/api").then((res) =>
+      const data = await fetch("/api/trouver-de-l-aide").then((res) =>
         res.json(),
       );
       setAdresses(data);
