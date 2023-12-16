@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { hygraph } from "../../_infrastructure/hygraph";
-import { FicheTuto } from "./FicheTuto";
+import { FicheTuto } from "../../_domain/FicheTuto";
 import { FicheTutoType } from "../../_types/FicheTutoType";
 
 const getUnePageDeFichesTutosQuery = (page: number) => gql`

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FicheTuto } from "../../_applications/FichesTutos/FicheTuto";
+import { FicheTuto } from "../../_domain/FicheTuto";
 
 type ListeFichesTutosProps = { fichesTutos: FicheTuto[] };
 

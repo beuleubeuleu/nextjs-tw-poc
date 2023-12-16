@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { Adresse } from "./Adresse";
+import { Adresse } from "../../_domain/Adresse";
 import { AdresseType } from "../../_types/AdresseType";
 import { hygraph } from "../../_infrastructure/hygraph";
 

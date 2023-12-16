@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedFichesTutos } from "../../_applications/FichesTutos/getFeaturedFichesTutos";
-import { FicheTuto } from "../../_applications/FichesTutos/FicheTuto";
+import { FicheTuto } from "../../_domain/FicheTuto";
 
 export default async function FeaturedListeFichesTutos() {
   const featuredFichesTutos = await getFeaturedFichesTutos();
