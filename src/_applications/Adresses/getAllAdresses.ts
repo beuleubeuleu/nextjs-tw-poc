@@ -1,38 +1,8 @@
-import { gql } from "graphql-request";
-import { Adresse } from "../../_domain/Adresse";
-import { AdresseType } from "../../_types/AdresseType";
-import { hygraph } from "../../_infrastructure/hygraph";
+import { Adresse, AdresseRepo } from "../../_domain/Adresse";
+import { AdresseGateway } from "../../_infrastructure/Gateway/AdresseGateway";
 
-const getAllAdressesQuery = gql`
-  {
-    adresses {
-      id
-      longitude
-      lattitude
-      description
-      adresse
-      telephone
-      titre
-    }
-  }
-`;
-
-export async function getAllAdresses(): Promise<Adresse[]> {
-  const { adresses } = await hygraph.request<{ adresses: AdresseType[] }>(
-    getAllAdressesQuery,
-  );
-  if (adresses)
-    return adresses.map(
-      (adresse) =>
-        new Adresse(
-          adresse.id,
-          adresse.longitude,
-          adresse.lattitude,
-          adresse.description,
-          adresse.adresse,
-          adresse.telephone,
-          adresse.titre,
-        ),
-    );
-  return null;
+export async function getAllAdresses(
+  adresseRepo: AdresseRepo,
+): Promise<Adresse[]> {
+  return adresseRepo.getAllAdresses();
 }

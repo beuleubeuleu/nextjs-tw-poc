@@ -2,9 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedFichesTutos } from "../../_applications/FichesTutos/getFeaturedFichesTutos";
 import { FicheTuto } from "../../_domain/FicheTuto";
+import { FicheTutoGateway } from "../../_infrastructure/Gateway/FicheTutoGateway";
 
 export default async function FeaturedListeFichesTutos() {
-  const featuredFichesTutos = await getFeaturedFichesTutos();
+  const featuredFichesTutos = await getFeaturedFichesTutos(
+    new FicheTutoGateway(),
+  );
 
   return (
     <section className={"mt-10 p-4"}>

@@ -25,3 +25,7 @@ export class Adresse {
     this.titre = titre;
   }
 }
+
+export interface AdresseRepo {
+  getAllAdresses(): Promise<Adresse[]>;
+}

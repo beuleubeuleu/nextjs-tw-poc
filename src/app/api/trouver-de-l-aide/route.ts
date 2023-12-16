@@ -1,9 +1,8 @@
 import { getAllAdresses } from "../../../_applications/Adresses/getAllAdresses";
-
-export const dynamic = "force-dynamic"; // defaults to auto
+import { AdresseGateway } from "../../../_infrastructure/Gateway/AdresseGateway";
 
 export async function GET(request: Request): Promise<any> {
-  const adresses = await getAllAdresses();
+  const adresses = await getAllAdresses(new AdresseGateway());
   if (adresses) return new Response(JSON.stringify(adresses));
   return null;
 }

@@ -3,7 +3,7 @@
 import Footer from "../../app/_components/_ui/Footer";
 import Map from "../../app/_components/Map";
 import { useEffect, useState } from "react";
-import { getDistanceVoldOiseauFromLatLonInKm } from "../utils";
+import { getDistanceVoldOiseauFromLatLonInKm } from "../../utils";
 import Image from "next/image";
 import Link from "next/link";
 import { AdresseType } from "../../_types/AdresseType";

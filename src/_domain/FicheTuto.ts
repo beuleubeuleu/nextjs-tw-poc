@@ -15,3 +15,14 @@ export class FicheTuto {
     return this.title;
   }
 }
+
+export interface FicheTutoRepo {
+  getFeatured(): Promise<FicheTuto[]>;
+
+  getUnePageDeFichesTutos(page: number): Promise<{
+    fichesTutos: FicheTuto[];
+    nombreTotalDeFichesTutos: number;
+    hasPreviousPage: Boolean;
+    hasNextPage: Boolean;
+  }>;
+}

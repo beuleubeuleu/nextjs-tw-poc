@@ -2,6 +2,7 @@ import Link from "next/link";
 import Footer from "../_components/_ui/Footer";
 import ListeFichesTutos from "../_components/ListeFichesTutos";
 import { getUnePageDeFichesTutos } from "../../_applications/FichesTutos/getUnePageDeFichesTutos";
+import { FicheTutoGateway } from "../../_infrastructure/Gateway/FicheTutoGateway";
 
 interface SearchParamsProps {
   searchParams: {
@@ -13,8 +14,12 @@ export default async function NosFichesTutos({
   searchParams,
 }: SearchParamsProps) {
   let page: number = Number(searchParams.page) ? Number(searchParams.page) : 1;
-  const { posts, nombreTotalDeFichesTutos, hasPreviousPage, hasNextPage } =
-    await getUnePageDeFichesTutos(page);
+  const {
+    fichesTutos,
+    nombreTotalDeFichesTutos,
+    hasPreviousPage,
+    hasNextPage,
+  } = await getUnePageDeFichesTutos(page, new FicheTutoGateway());
 
   return (
     <main className={""}>
@@ -24,7 +29,7 @@ export default async function NosFichesTutos({
       <hr className=" mx-4 mt-2 h-1 w-20 rounded-full border-0 bg-amber-600" />
 
       <button className={" mt-10 px-4"}>Modifier mes filtres</button>
-      <ListeFichesTutos fichesTutos={posts} />
+      <ListeFichesTutos fichesTutos={fichesTutos} />
 
       <div className="my-8 flex items-center justify-center gap-5">
         <Link
