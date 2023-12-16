@@ -1,13 +1,13 @@
 import { Adresse, AdresseRepo } from "../../_domain/Adresse";
 import { gql, GraphQLClient } from "graphql-request";
 import { AdresseType } from "../../_types/AdresseType";
-import { getAllAdressesQuery } from "../Queries";
+import { getAllAdressesQuery } from "../gqlQueries";
+import { HygraphClient } from "../HygraphClient";
 
 export class AdresseGateway implements AdresseRepo {
   async getAllAdresses(): Promise<Adresse[]> {
-    if (!process.env.HYGRAPH_URL) throw new Error("Connexion au cms erroné");
-    const hygraph = new GraphQLClient(process.env.HYGRAPH_URL);
-    const { adresses } = await hygraph.request<{ adresses: AdresseType[] }>(
+    const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
+    const { adresses } = await hygraph.get<{ adresses: AdresseType[] }>(
       getAllAdressesQuery,
     );
     if (!adresses) return null;

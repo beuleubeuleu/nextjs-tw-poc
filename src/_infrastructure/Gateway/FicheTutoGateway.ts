@@ -4,14 +4,15 @@ import { FicheTutoType } from "../../_types/FicheTutoType";
 import {
   featuredFicheTutoQuery,
   getUnePageDeFichesTutosQuery,
-} from "../Queries";
+  pageDeFicheTutoResponseData,
+} from "../gqlQueries";
+import { HygraphClient } from "../HygraphClient";
 
 export class FicheTutoGateway implements FicheTutoRepo {
   async getFeatured(): Promise<FicheTuto[]> {
-    if (!process.env.HYGRAPH_URL) throw new Error("Connexion au cms erroné");
-    const hygraph = new GraphQLClient(process.env.HYGRAPH_URL);
+    const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
-    const { posts } = await hygraph.request<{ posts: FicheTutoType[] }>(
+    const { posts } = await hygraph.get<{ posts: FicheTutoType[] }>(
       featuredFicheTutoQuery,
     );
     if (!posts) return null;
@@ -24,25 +25,9 @@ export class FicheTutoGateway implements FicheTutoRepo {
     hasPreviousPage: Boolean;
     hasNextPage: Boolean;
   }> {
-    if (!process.env.HYGRAPH_URL) throw new Error("Connexion au cms erroné");
-    const hygraph = new GraphQLClient(process.env.HYGRAPH_URL);
+    const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
-    type data = {
-      postsConnection: {
-        edges: {
-          node: FicheTutoType;
-        }[];
-        aggregate: {
-          count: number;
-        };
-        pageInfo: {
-          hasNextPage: Boolean;
-          hasPreviousPage: Boolean;
-        };
-      };
-    };
-
-    const { postsConnection } = await hygraph.request<data>(
+    const { postsConnection } = await hygraph.get<pageDeFicheTutoResponseData>(
       getUnePageDeFichesTutosQuery(page),
     );
     if (!postsConnection) return null;

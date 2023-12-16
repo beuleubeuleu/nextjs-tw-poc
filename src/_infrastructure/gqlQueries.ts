@@ -1,4 +1,5 @@
 import { gql } from "graphql-request";
+import { FicheTutoType } from "../_types/FicheTutoType";
 
 export const getAllAdressesQuery = gql`
   {
@@ -41,3 +42,18 @@ export const getUnePageDeFichesTutosQuery = (page: number) => gql`
     }
   }
 `;
+
+export type pageDeFicheTutoResponseData = {
+  postsConnection: {
+    edges: {
+      node: FicheTutoType;
+    }[];
+    aggregate: {
+      count: number;
+    };
+    pageInfo: {
+      hasNextPage: Boolean;
+      hasPreviousPage: Boolean;
+    };
+  };
+};
