@@ -1,5 +1,4 @@
 import { FicheTuto, FicheTutoRepo } from "../../_domain/FicheTuto";
-import { GraphQLClient } from "graphql-request";
 import { FicheTutoType } from "../../_types/FicheTutoType";
 import {
   featuredFicheTutoQuery,
