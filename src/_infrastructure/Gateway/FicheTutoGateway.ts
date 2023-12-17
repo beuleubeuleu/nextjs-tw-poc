@@ -1,19 +1,11 @@
 import { FicheTuto, FicheTutoRepo } from "../../_domain/FicheTuto";
-import { FicheTutoType } from "../../_types/FicheTutoType";
-import {
-  featuredFicheTutoQuery,
-  getUnePageDeFichesTutosQuery,
-  pageDeFicheTutoResponseData,
-} from "../gqlQueries";
 import { HygraphClient } from "../HygraphClient";
 
 export class FicheTutoGateway implements FicheTutoRepo {
   async getFeatured(): Promise<FicheTuto[]> {
     const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
-    const { posts } = await hygraph.get<{ posts: FicheTutoType[] }>(
-      featuredFicheTutoQuery,
-    );
+    const { posts } = await hygraph.fetchFeaturedFichesTutos();
     if (!posts) return null;
     return posts.map((post) => new FicheTuto(post.id, post.title));
   }
@@ -26,9 +18,7 @@ export class FicheTutoGateway implements FicheTutoRepo {
   }> {
     const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
-    const { postsConnection } = await hygraph.get<pageDeFicheTutoResponseData>(
-      getUnePageDeFichesTutosQuery(page),
-    );
+    const { postsConnection } = await hygraph.fetchUnePageDeFichesTutos(page);
     if (!postsConnection) return null;
 
     const fichesTutos = postsConnection.edges.map(
