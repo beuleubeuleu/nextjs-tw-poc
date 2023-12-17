@@ -5,7 +5,8 @@ export class AdresseGateway implements AdresseRepo {
   async getAllAdresses(): Promise<Adresse[]> {
     const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
     const { adresses } = await hygraph.fetchAllAdresses();
-    if (!adresses) return null;
+    if (!adresses)
+      throw new Error("erreur lors de la récuperation des données");
     return adresses.map(
       (adresse) =>
         new Adresse(

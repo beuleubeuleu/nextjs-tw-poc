@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "HYGRAPH_URL=https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/clpyr3tiom8ay01un4iocghwq/master next build",
     "start": "next start",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",

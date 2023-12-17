@@ -5,7 +5,7 @@ import { AdresseType } from "../_types/AdresseType";
 export class HygraphClient {
   private client: GraphQLClient;
 
-  constructor(url: string) {
+  constructor(url: string | undefined) {
     if (!url) throw new Error("Connexion au cms erroné");
     this.client = new GraphQLClient(url);
   }

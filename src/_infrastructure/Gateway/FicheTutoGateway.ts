@@ -6,7 +6,7 @@ export class FicheTutoGateway implements FicheTutoRepo {
     const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
     const { posts } = await hygraph.fetchFeaturedFichesTutos();
-    if (!posts) return null;
+    if (!posts) throw new Error("erreur lors de la récuperation des données");
     return posts.map((post) => new FicheTuto(post.id, post.title));
   }
 
@@ -19,8 +19,8 @@ export class FicheTutoGateway implements FicheTutoRepo {
     const hygraph = new HygraphClient(process.env.HYGRAPH_URL);
 
     const { postsConnection } = await hygraph.fetchUnePageDeFichesTutos(page);
-    if (!postsConnection) return null;
-
+    if (!postsConnection)
+      throw new Error("erreur lors de la récuperation des données");
     const fichesTutos = postsConnection.edges.map(
       (item) => new FicheTuto(item.node.id, item.node.title),
     );
